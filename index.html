@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serverless App Lab</title>
+</head>
+<body>
+  <h1>Serverless Lab</h1>
+  <form>
+    <label for="fullname">Full Name:</label>
+    <input type="text" name="fullname" id="fullname">
+
+    <button type="button" onclick="handleRequestServerlessApi()">Send</button>
+  </form>
+
+  <script>
+    const handleRequestServerlessApi = () => {
+      const headers = new Headers();
+      const fullName = document.getElementById('fullname').value;
+      const body = JSON.stringify({ fullName });
+      const api = 'YOUR_API_ENV_HERE';
+      const options = { 
+        method: 'POST',
+        headers,
+        body,
+        redirect: 'follow',
+      };
+
+      headers.append('Content-Type', 'application/json');
+
+      fetch(api, options)
+        .then(response => response.json())
+        .then(result => console.log('result: ', result))
+        .catch(error => console.log('error: ', error))
+
+    }
+
+  </script>
+</body>
+</html>
